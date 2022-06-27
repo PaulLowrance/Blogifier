@@ -19,6 +19,7 @@ namespace Blogifier.Shared
         public int PostViews { get; set; }
         public double Rating { get; set; }
         public DateTime Published { get; set; }
+        public bool IsSecured { get; set; }
         public bool IsPublished { get { return Published > DateTime.MinValue; } }
         public bool Featured { get; set; }
 

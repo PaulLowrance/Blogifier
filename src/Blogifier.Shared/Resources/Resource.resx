@@ -285,6 +285,9 @@
     <data name="about" xml:space="preserve">
         <value>About</value>
     </data>
+    <data name="menu" xml:space="preserve">
+        <value>Menu</value>
+    </data>
     <data name="newsletter" xml:space="preserve">
         <value>Newsletter</value>
     </data>

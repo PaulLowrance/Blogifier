@@ -32,6 +32,7 @@ namespace Blogifier.Shared
 		public bool Selected { get; set; }
 
 		public DateTime Published { get; set; }
+        public bool IsSecured { get; set; }
 		public DateTime DateCreated { get; set; }
 		public DateTime DateUpdated { get; set; }
 
