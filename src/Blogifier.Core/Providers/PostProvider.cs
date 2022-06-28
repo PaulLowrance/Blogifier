@@ -285,7 +285,7 @@ namespace Blogifier.Core.Providers
 
         public async Task<bool> Secured(int id, bool secured)
         {
-            var existing = await _db.Posts.FirstOrDefaultAsync(p => p.Id == id);
+            var existing = await _db.Posts.Where(p => p.Id == id).FirstOrDefaultAsync();
             if (existing is null)
                 return false;
 

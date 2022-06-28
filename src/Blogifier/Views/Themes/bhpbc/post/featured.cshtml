@@ -1,6 +1,6 @@
 @{
    ListModel _model = (ListModel)Model;
-   List<PostItem> _featured = _model.Posts.Where(p => p.Featured).Take(3).ToList();
+   List<PostItem> _featured = _model.Posts.Where(p => p.Featured && !p.IsSecured).Take(3).ToList();
 }
 
 @if(_featured != null)
