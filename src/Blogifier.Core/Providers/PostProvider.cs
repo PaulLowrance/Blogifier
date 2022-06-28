@@ -29,7 +29,8 @@ namespace Blogifier.Core.Providers
 		Task<IEnumerable<PostItem>> Search(Pager pager, string term, int author = 0, string include = "", bool sanitize = false);
 		Task<IEnumerable<PostItem>> GetList(Pager pager, int author = 0, string category = "", string include = "", bool sanitize = true);
 		Task<bool> Remove(int id);
-	}
+        Task<bool> Secured(int id, bool secured);
+    }
 
 	public class PostProvider : IPostProvider
 	{
@@ -65,7 +66,7 @@ namespace Blogifier.Core.Providers
 				return await _db.Posts.ToListAsync();
 
 			return await _db.Posts
-				.AsNoTracking()			
+				.AsNoTracking()
 				.Where(p => p.Title.ToLower().Contains(term.ToLower()))
 				.ToListAsync();
 		}
@@ -83,7 +84,7 @@ namespace Blogifier.Core.Providers
 			{
 				var rank = 0;
 				var hits = 0;
-				
+
 				foreach (var termItem in termList)
 				{
 					if (termItem.Length < 4 && rank > 0) continue;
@@ -281,6 +282,16 @@ namespace Blogifier.Core.Providers
 
 			return await _db.SaveChangesAsync() > 0;
 		}
+
+        public async Task<bool> Secured(int id, bool secured)
+        {
+            var existing = await _db.Posts.FirstOrDefaultAsync(p => p.Id == id);
+            if (existing is null)
+                return false;
+
+            existing.IsSecured = secured;
+            return await _db.SaveChangesAsync() > 0;
+        }
 
 		public async Task<IEnumerable<PostItem>> GetList(Pager pager, int author = 0, string category = "", string include = "", bool sanitize = true)
 		{

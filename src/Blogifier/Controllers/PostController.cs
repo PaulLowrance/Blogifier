@@ -70,6 +70,13 @@ namespace Blogifier.Controllers
 			return await _postProvider.Featured(id, featured);
 		}
 
+        [Authorize]
+        [HttpPut("secure/{id:int}")]
+        public async Task<ActionResult<bool>> SecuredPost(int id, [FromBody] bool secured)
+        {
+            return await _postProvider.Secured(id, secured);
+        }
+
 		[Authorize]
 		[HttpDelete("{id:int}")]
 		public async Task<ActionResult<bool>> RemovePost(int id)
