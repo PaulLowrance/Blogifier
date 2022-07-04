@@ -152,7 +152,8 @@ namespace Blogifier.Core.Providers
 					Cover = string.IsNullOrEmpty(post.Cover) ? Constants.DefaultCover : post.Cover,
 					Published = post.Published,
 					PostViews = post.PostViews,
-					Featured = post.IsFeatured
+					Featured = post.IsFeatured,
+                    IsSecured = post.IsSecured
 				});
 			}
 
