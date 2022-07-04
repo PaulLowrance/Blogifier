@@ -385,6 +385,7 @@ namespace Blogifier.Core.Providers
 				Rating = p.Rating,
 				Published = p.Published,
 				Featured = p.IsFeatured,
+                IsSecured = p.IsSecured,
 				Author = _db.Authors.Single(a => a.Id == p.AuthorId),
 				SocialFields = new List<SocialField>()
 			};
